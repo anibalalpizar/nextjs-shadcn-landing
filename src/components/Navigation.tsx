@@ -3,9 +3,16 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-} from "@/components/ui/navigation-menu";
-import { BookOpen, Briefcase, Home, Image, User } from "lucide-react";
-import { ModeToggle } from "./ModeToggle";
+} from "@/components/ui/navigation-menu"
+import {
+  BookOpen,
+  Briefcase,
+  CreditCard,
+  Home,
+  Image,
+  User,
+} from "lucide-react"
+import { ModeToggle } from "./ModeToggle"
 
 export function Navigation() {
   return (
@@ -44,6 +51,14 @@ export function Navigation() {
                   className="text-foreground/80 hover:text-foreground flex items-center gap-2 transition-colors"
                 >
                   <BookOpen className="w-4 h-4" /> <span>Testimonials</span>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem className="px-4">
+                <NavigationMenuLink
+                  href="#pricing"
+                  className="text-foreground/80 hover:text-foreground flex items-center gap-2 transition-colors"
+                >
+                  <CreditCard className="w-4 h-4" /> <span>Pricing</span>
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem className="px-4">
@@ -94,6 +109,14 @@ export function Navigation() {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink
+                  href="#pricing"
+                  className="text-foreground/80 hover:text-foreground flex items-center gap-2 transition-colors"
+                >
+                  <CreditCard className="w-6 h-6" />
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink
                   href="#faq"
                   className="text-foreground/80 hover:text-foreground flex items-center gap-2 transition-colors"
                 >
@@ -108,5 +131,5 @@ export function Navigation() {
         </div>
       </div>
     </nav>
-  );
+  )
 }
