@@ -3,7 +3,7 @@ import { FAQ } from "./sections/Faq";
 import { Footer } from "./sections/Footer";
 import { Hero } from "./sections/Hero";
 import { Sponsors } from "./sections/Investors";
-import { Pricing } from "./sections/Pricing.tsx";
+import { Pricing } from "./sections/Pricing";
 import { Testimonials } from "./sections/Testimonials";
  
 export default function Home() {
