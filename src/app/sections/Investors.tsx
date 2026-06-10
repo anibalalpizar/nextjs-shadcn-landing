@@ -1,31 +1,60 @@
-"use client";
+"use client"
 
-import DarkLogo from "@/assets/vercel-icon-dark.svg";
-import LightLogo from "@/assets/vercel-icon-light.svg";
-import type { Sponsor } from "@/types";
-import type { AnimatedProps } from "@/types/motion";
-import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import type { AnimatedProps } from "@/types/motion"
+import { motion } from "framer-motion"
+import { useTheme } from "next-themes"
+import Image from "next/image"
+import { useEffect, useState } from "react"
+
+interface Sponsor {
+  name: string
+  darkLogo: string
+  lightLogo: string
+  href: string
+}
 
 const sponsors: Sponsor[] = [
-  { name: "Vercel" },
-  { name: "Vercel" },
-  { name: "Vercel" },
-];
+  {
+    name: "Vercel",
+    darkLogo: "/sponsors/vercel-dark.svg",
+    lightLogo: "/sponsors/vercel-light.svg",
+    href: "https://vercel.com",
+  },
+  {
+    name: "Next.js",
+    darkLogo: "/sponsors/nextjs-dark.svg",
+    lightLogo: "/sponsors/nextjs-light.svg",
+    href: "https://nextjs.org",
+  },
+  {
+    name: "Tailwind CSS",
+    darkLogo: "/sponsors/tailwind-dark.svg",
+    lightLogo: "/sponsors/tailwind-light.svg",
+    href: "https://tailwindcss.com",
+  },
+  {
+    name: "shadcn/ui",
+    darkLogo: "/sponsors/shadcn-dark.svg",
+    lightLogo: "/sponsors/shadcn-light.svg",
+    href: "https://ui.shadcn.com",
+  },
+  {
+    name: "TypeScript",
+    darkLogo: "/sponsors/typescript-dark.svg",
+    lightLogo: "/sponsors/typescript-light.svg",
+    href: "https://www.typescriptlang.org",
+  },
+]
 
 export function Sponsors({ id }: AnimatedProps) {
-  const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
-  if (!mounted) return null;
-
-  const iconSrc = theme === "dark" ? LightLogo : DarkLogo;
+  if (!mounted) return null
 
   return (
     <section
@@ -53,24 +82,27 @@ export function Sponsors({ id }: AnimatedProps) {
           style={{ display: "flex", gap: "2rem" }}
         >
           {[...sponsors, ...sponsors].map((sponsor, index) => (
-            <div
+            <a
               key={index}
-              className="flex-shrink-0 flex flex-col items-center justify-center mx-8"
+              href={sponsor.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 flex flex-col items-center justify-center mx-8 group"
               style={{ width: "200px" }}
             >
               <div className="relative w-32 h-32 mb-4">
                 <Image
-                  src={iconSrc}
+                  src={theme === "dark" ? sponsor.darkLogo : sponsor.lightLogo}
                   alt={sponsor.name}
                   fill
-                  className="object-contain drop-shadow-lg"
+                  className="object-contain drop-shadow-lg opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ filter: "brightness(1.05)" }}
                 />
               </div>
-              <span className="text-lg font-medium opacity-90">
+              <span className="text-lg font-medium opacity-90 group-hover:opacity-100 transition-opacity duration-300">
                 {sponsor.name}
               </span>
-            </div>
+            </a>
           ))}
         </motion.div>
 
@@ -78,5 +110,5 @@ export function Sponsors({ id }: AnimatedProps) {
         <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
       </div>
     </section>
-  );
+  )
 }
